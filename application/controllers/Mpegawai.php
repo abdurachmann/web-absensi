@@ -40,7 +40,7 @@ class Mpegawai extends CI_Controller {
 			'nik' 				=> '',
 			'nama' 				=> '',
 			'alamat' 			=> '',
-			'tanggallahir' 		=> '',
+			'password' 		=> '',
 			'macaddress' 	=> '',
 			'status' 			=> ''
 		);
@@ -67,7 +67,7 @@ class Mpegawai extends CI_Controller {
 					'nik' 					=> $row->nik,
 					'nama' 					=> $row->nama,
 					'alamat' 				=> $row->alamat,
-					'tanggallahir' 			=> $row->tanggallahir,
+					'password' 			=> $row->password,
 					'macaddress' 		=> $row->macaddress,
 					'status' 				=> $row->status
 				);
@@ -104,7 +104,8 @@ class Mpegawai extends CI_Controller {
 	function save(){
 		$this->form_validation->set_rules('nik', 'nik', 'trim|required');
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('tanggallahir', 'tanggallahir', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+		$this->form_validation->set_rules('password_confirmation', 'Password Confirmation', 'trim|required|matches[password]');
 		$this->form_validation->set_rules('macaddress', 'Mac Address', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE){

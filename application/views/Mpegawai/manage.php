@@ -31,9 +31,15 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-3 control-label" for="nama">Tanggal Lahir</label>
+				<label class="col-md-3 control-label" for="example-hf-email">Password</label>
 				<div class="col-md-7">
-					<input type="date" class="form-control" id="tanggallahir" placeholder="Tanggal Lahir" name="tanggallahir" value="{tanggallahir}" required="" aria-required="true">
+					<input type="password" class="form-control" id="password" placeholder="Password" name="password" value="" required="" aria-required="true">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label" for="example-hf-email">Password Confirmation</label>
+				<div class="col-md-7">
+					<input type="password" class="form-control" id="password_confirmation" placeholder="Password Confirmation" name="password_confirmation" value="" required="" aria-required="true">
 				</div>
 			</div>
 			<div class="form-group">

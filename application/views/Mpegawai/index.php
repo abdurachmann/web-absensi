@@ -19,7 +19,6 @@
 					<th>NIK</th>
 					<th>Nama</th>
 					<th>Alamat</th>
-					<th>Tanggal Lahir</th>
 					<th>Mac Address</th>
 					<th>Action</th>
 				</tr>
@@ -33,7 +32,6 @@
 					<td><?=$row->nik?></td>
 					<td><?=$row->nama?></td>
 					<td><?=$row->alamat?></td>
-					<td><?=$row->tanggallahir?></td>
 					<td><?=$row->macaddress?></td>
 					<td>
 						<div class="btn-group">

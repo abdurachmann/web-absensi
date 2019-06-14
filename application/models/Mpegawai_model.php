@@ -27,8 +27,9 @@ class Mpegawai_model extends CI_Model
 				$this->nik 	       = $_POST['nik'];
 				$this->nama 	     = $_POST['nama'];
 				$this->alamat 	   = $_POST['alamat'];
-				$this->tanggallahir    = $_POST['tanggallahir'];
-				$this->macaddress  = $_POST['macaddress'];
+                $this->macaddress  = $_POST['macaddress'];
+                
+				($_POST['password'] !='')? $this->password = md5($_POST['password']) : $this->password = md5('123456');
 
 				if($this->db->insert('mpegawai', $this)){
 					return true;
@@ -43,8 +44,9 @@ class Mpegawai_model extends CI_Model
 				$this->nik 	       = $_POST['nik'];
 				$this->nama 	     = $_POST['nama'];
 				$this->alamat 	   = $_POST['alamat'];
-				$this->tanggallahir    = $_POST['tanggallahir'];
-				$this->macaddress  = $_POST['macaddress'];
+                $this->macaddress  = $_POST['macaddress'];
+                
+				if($_POST['password'] !='') $this->password = md5($_POST['password']);
 
 				if($this->db->update('mpegawai', $this, array('nik' => $_POST['nik']))){
 					return true;
