@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require 'vendor/autoload.php';
 require 'application/libraries/REST_Controller.php';
 
-class Infoprofile extends REST_Controller
+class Profile extends REST_Controller
 {
 	public function index_get()
 	{

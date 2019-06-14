@@ -4,40 +4,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require 'vendor/autoload.php';
 require 'application/libraries/REST_Controller.php';
 
-class Syncgps extends REST_Controller
+class SyncGps extends REST_Controller
 {
-  public function index_get()
-  {
-		$this->response([
-			'status' => true,
-			'message' => 'no message',
-			'data' => array(
-				array(
-					'id_data' => '1',
-					'name' => 'Gunali Rezqi Mauludi'
-				),
-				array(
-					'id_data' => '2',
-					'name' => 'Abdu Rachman Ruchendar'
-				),
-				array(
-					'id_data' => '3',
-					'name' => 'Tian Huday Pison'
-				),
-				array(
-					'id_data' => '4',
-					'name' => 'Masdan Suryo Purmadianto'
-				),
-				array(
-					'id_data' => '5',
-					'name' => 'Jajang Maolana Yusup'
-				),
-			)
-		]);
-  }
+	public function index_post()
+	{
+		// Parameter
+		$latitude = $this->post('latitude');
+		$longitude = $this->post('longitude');
 
-  public function index_post()
-  {
-    // Create a new book
-  }
+		// Query Database
+		$this->db->where('latitude', $latitude);
+		$this->db->where('longitude ', $longitude);
+		$query = $this->db->get('mperusahaan');
+		$data = $query->row();
+
+		// Response
+		if ($query->num_rows() > 0) {
+			$this->response([
+				'status' => true,
+				'message' => 'no message',
+				'data' => $data
+			]);
+		} else {
+			$this->response([
+				'status' => false,
+				'message' => 'error',
+				'data' => array()
+			]);
+		}
+	}
 }
