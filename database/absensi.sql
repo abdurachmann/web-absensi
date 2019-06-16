@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 14/06/2019 20:32:02
+ Date: 16/06/2019 22:25:19
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,8 @@ CREATE TABLE `infoabsensi` (
   `macaddress` varchar(25) DEFAULT NULL,
   `latitude` varchar(250) DEFAULT NULL,
   `longitude` varchar(250) DEFAULT NULL,
-  `keterangan` varchar(150) DEFAULT NULL,
+  `keteranganmasuk` varchar(150) DEFAULT NULL,
+  `keterangankeluar` varchar(150) DEFAULT NULL,
   `status` char(1) DEFAULT '1',
   PRIMARY KEY (`tanggal`,`nik`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -38,7 +39,7 @@ CREATE TABLE `infoabsensi` (
 -- Records of infoabsensi
 -- ----------------------------
 BEGIN;
-INSERT INTO `infoabsensi` VALUES ('2019-06-14', 'P0001', '08:00:00', NULL, 'd7:66:37:d8:92', '1.928738792', '9.7637783983', '-', '1');
+INSERT INTO `infoabsensi` VALUES ('2019-06-14', 'P0001', '08:00:00', NULL, 'd7:66:37:d8:92', '1.928738792', '9.7637783983', '-', NULL, '1');
 COMMIT;
 
 -- ----------------------------
@@ -49,7 +50,7 @@ CREATE TABLE `mpegawai` (
   `nik` varchar(25) NOT NULL,
   `nama` varchar(150) DEFAULT NULL,
   `alamat` text,
-  `password` varchar(25) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
   `macaddress` varchar(25) DEFAULT NULL,
   `status` char(1) DEFAULT '1',
   PRIMARY KEY (`nik`) USING BTREE
@@ -59,8 +60,8 @@ CREATE TABLE `mpegawai` (
 -- Records of mpegawai
 -- ----------------------------
 BEGIN;
-INSERT INTO `mpegawai` VALUES ('P0001', 'Budi', 'Jl. Samudra', '2019-06-14', '28:28:s8:92:2o', '1');
-INSERT INTO `mpegawai` VALUES ('P0002', 'Rangga', 'Jl. Cikutra', '2019-06-10', '9f:7d:9h:24:56', '1');
+INSERT INTO `mpegawai` VALUES ('P0001', 'Budi', 'Jl. Samudra', 'e10adc3949ba59abbe56e057f20f883e', '28:28:s8:92:2o', '1');
+INSERT INTO `mpegawai` VALUES ('P0002', 'Rangga', 'Jl. Cikutra', 'e10adc3949ba59abbe56e057f20f883e', '9f:7d:9h:24:56', '1');
 COMMIT;
 
 -- ----------------------------

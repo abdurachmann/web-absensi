@@ -13,8 +13,8 @@ class Musers_model extends CI_Model {
   }
 
 	function getSpecified($id){
-		$this->db->where('muser.id',$id);
-		$query = $this->db->get('muser');
+  	$this->db->where('muser.id',$id);
+  	$query = $this->db->get('muser');
     return $query->row();
   }
 
@@ -106,13 +106,14 @@ class Musers_model extends CI_Model {
 		if($query->num_rows() > 0){
 			$row = $query->row();
 			$data = array(
-      					'user_id' 					=> $row->id,
-      					'user_avatar' 			=> $row->foto,
-      					'user_name' 				=> $row->nama,
-      					'user_username' 		=> $row->username,
-      					'user_password' 		=> $row->password,
-      					'logged_in'  				=> TRUE,
-    					);
+				'user_id' 				=> $row->id,
+				'user_avatar' 		=> $row->foto,
+				'user_name' 			=> $row->nama,
+				'user_username' 	=> $row->username,
+				'user_password' 	=> $row->password,
+				'logged_in'  			=> TRUE,
+			);
+      
 			$this->session->set_userdata($data);
 			return true;
 		}else{
@@ -122,12 +123,13 @@ class Musers_model extends CI_Model {
 
 	function sign_out(){
 		$data = array(
-  					   'user_id'  				  => $this->session->userdata('user_id'),
-  					   'user_avatar'  			=> $this->session->userdata('user_avatar'),
-  					   'user_name'  			  => $this->session->userdata('user_name'),
-  					   'user_username'  		=> $this->session->userdata('user_username'),
-  					   'logged_in'    			=> $this->session->userdata('logged_in'),
-  					);
+			'user_id'  				=> $this->session->userdata('user_id'),
+			'user_avatar'  		=> $this->session->userdata('user_avatar'),
+			'user_name'  			=> $this->session->userdata('user_name'),
+			'user_username'  	=> $this->session->userdata('user_username'),
+			'logged_in'    		=> $this->session->userdata('logged_in'),
+		);
+
 		$this->session->unset_userdata($data);
     $this->session->sess_destroy();
 	}

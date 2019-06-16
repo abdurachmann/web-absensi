@@ -22,16 +22,16 @@ class Absen extends REST_Controller
 
 		if ($jenisAbsen == 'masuk') {
 			if($jamAbsen > 8){
-				$data['keterangan'] = 'Terlambat';
+				$data['keteranganmasuk'] = 'Terlambat';
 			}else{
-				$data['keterangan'] = '-';
+				$data['keteranganmasuk'] = '-';
 			}
 			$data['absenmasuk'] = $this->post('jamabsen');
 		} else {
 			if($jamAbsen < 16){
-				$data['keterangan'] = 'Pulang Cepat';
+				$data['keterangankeluar'] = 'Pulang Cepat';
 			}else{
-				$data['keterangan'] = '-';
+				$data['keterangankeluar'] = '-';
 			}
 			$data['absenkeluar'] = $this->post('jamabsen');
 		}

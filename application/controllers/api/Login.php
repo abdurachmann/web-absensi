@@ -10,11 +10,11 @@ class Login extends REST_Controller
 	{
 		// Parameter
 		$nik = $this->post('nik');
-		$tahun = $this->post('tanggallahir');
+		$password = $this->post('password');
 
 		// Query Database
 		$this->db->where('nik', $nik);
-		$this->db->where('tanggallahir', $tahun);
+		$this->db->where('password', md5($password));
 		$query = $this->db->get('mpegawai');
 		$data = $query->row();
 

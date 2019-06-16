@@ -20,6 +20,7 @@ class Dashboard extends CI_Controller {
 			'jumlahPegawai' => $this->dashboard_model->getCountPegawai()->jumlahpegawai,
 			'jumlahUser' => $this->dashboard_model->getCountUser()->jumlahuser,
 		);
+		
     $data['title']      = 'Dashboard';
 		$data['content'] 		= 'dashboard';
 		$data['breadcrum'] 	= array(
