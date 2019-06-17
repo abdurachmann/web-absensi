@@ -11,7 +11,7 @@ class Absen extends REST_Controller
 		// Parameter
 		$tanggal = date("Y-m-d");
 		$jenisAbsen = $this->post('jenisabsen');
-		$jamAbsen = $this->post('jamabsen');
+		$jamAbsen = date("H:i:s");
 
 		$data = array();
 		$data['tanggal'] = $tanggal;
@@ -26,14 +26,14 @@ class Absen extends REST_Controller
 			}else{
 				$data['keteranganmasuk'] = '-';
 			}
-			$data['absenmasuk'] = $this->post('jamabsen');
+			$data['absenmasuk'] = $jamAbsen;
 		} else {
 			if($jamAbsen < 16){
 				$data['keterangankeluar'] = 'Pulang Cepat';
 			}else{
 				$data['keterangankeluar'] = '-';
 			}
-			$data['absenkeluar'] = $this->post('jamabsen');
+			$data['absenkeluar'] = $jamAbsen;
 		}
 
 		// Query Database & Response
@@ -48,5 +48,29 @@ class Absen extends REST_Controller
 				'message' => 'error'
 			]);
 		}
+	}
+
+	public function office_get()
+	{
+		// Query Database
+		$query = $this->db->get('mperusahaan');
+
+		// Response
+		if ($query->num_rows() > 0) {
+			http_response_code(200);
+			return $this->output
+				->set_content_type('application/json')
+				->set_output(json_encode($query->row()));
+		} else {
+			http_response_code(404);
+
+			return $this->output
+				->set_content_type('application/json')
+				->set_output([
+					'status' => false,
+					'message' => 'error',
+				]);
+		}
+
 	}
 }
