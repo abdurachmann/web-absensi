@@ -14,7 +14,8 @@
         <th style="text-align:center">Mac Address</th>
         <th style="text-align:center">Latitude</th>
         <th style="text-align:center">Longitude</th>
-        <th style="text-align:center">Keterangan</th>
+        <th style="text-align:center">Keterangan Masuk</th>
+        <th style="text-align:center">Keterangan Keluar</th>
       </tr>
 
       <!-- default variable -->
@@ -33,7 +34,8 @@
 						<td><?=$row->macaddress;?></td>
             <td><?=$row->latitude;?></td>
             <td><?=$row->longitude;?></td>
-            <td><?=$row->keterangan;?></td>
+            <td><?=$row->keteranganmasuk;?></td>
+            <td><?=$row->keterangankeluar;?></td>
           </tr>
         <? } ?>
       <? } ?>

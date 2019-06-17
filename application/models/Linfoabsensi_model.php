@@ -6,7 +6,7 @@ class Linfoabsensi_model extends CI_Model {
 	public function getLaporan()
 	{
 		$this->db->select('infoabsensi.*, mpegawai.nama AS namapegawai');
-		$this->db->join('mpegawai', 'mpegawai.id = infoabsensi.idpegawai');
+		$this->db->join('mpegawai', 'mpegawai.nik = infoabsensi.nik');
 		$query = $this->db->get('infoabsensi');
 		return $query->result();
 	}

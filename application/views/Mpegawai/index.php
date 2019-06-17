@@ -20,7 +20,6 @@
 					<th>Nama</th>
 					<th>Alamat</th>
 					<th>Mac Address</th>
-					<th>Username</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -34,11 +33,10 @@
 					<td><?=$row->nama?></td>
 					<td><?=$row->alamat?></td>
 					<td><?=$row->macaddress?></td>
-					<td><?=$row->username?></td>
 					<td>
 						<div class="btn-group">
-							<a href="{base_url}mpegawai/update/<?=$row->id?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-pencil"></i></a>&nbsp;
-							<a href="{base_url}mpegawai/delete/<?=$row->id?>" data-toggle="tooltip" title="Hapus" onclick="return confirm('Anda yakin data akan dihapus ?');"><i class="fa fa-trash-o"></i></a>
+							<a href="{base_url}mpegawai/update/<?=$row->nik?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-pencil"></i></a>&nbsp;
+							<a href="{base_url}mpegawai/delete/<?=$row->nik?>" data-toggle="tooltip" title="Hapus" onclick="return confirm('Anda yakin data akan dihapus ?');"><i class="fa fa-trash-o"></i></a>
 						</div>
 					</td>
 				</tr>

@@ -40,9 +40,8 @@ class Mpegawai extends CI_Controller {
 			'nik' 				=> '',
 			'nama' 				=> '',
 			'alamat' 			=> '',
-			'macaddress' 	=> '',
-			'username' 		=> '',
 			'password' 		=> '',
+			'macaddress' 	=> '',
 			'status' 			=> ''
 		);
 
@@ -59,18 +58,17 @@ class Mpegawai extends CI_Controller {
 		$this->parser->parse('module_template', $data);
 	}
 
-	function update($id){
-		if($id != ''){
-			$row = $this->Mpegawai_model->getSpecified($id);
-			if(isset($row->id)){
+	function update($nik){
+		if($nik != ''){
+			$row = $this->Mpegawai_model->getSpecified($nik);
+			if(isset($row->nik)){
 				$data = array(
-					'id' 						=> $row->id,
+					'id' 						=> $row->nik,
 					'nik' 					=> $row->nik,
 					'nama' 					=> $row->nama,
 					'alamat' 				=> $row->alamat,
-					'macaddress' 		=> $row->macaddress,
-					'username' 			=> $row->username,
 					'password' 			=> $row->password,
+					'macaddress' 		=> $row->macaddress,
 					'status' 				=> $row->status
 				);
 				$data['error'] 			= '';
@@ -96,8 +94,8 @@ class Mpegawai extends CI_Controller {
 		}
 	}
 
-	function delete($id){
-		$this->Mpegawai_model->softDelete($id);
+	function delete($nik){
+		$this->Mpegawai_model->softDelete($nik);
 		$this->session->set_flashdata('confirm',true);
 		$this->session->set_flashdata('message_flash','data telah terhapus.');
 		redirect('Mpegawai','location');
@@ -106,9 +104,9 @@ class Mpegawai extends CI_Controller {
 	function save(){
 		$this->form_validation->set_rules('nik', 'nik', 'trim|required');
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+		$this->form_validation->set_rules('password_confirmation', 'Password Confirmation', 'trim|required|matches[password]');
 		$this->form_validation->set_rules('macaddress', 'Mac Address', 'trim|required');
-		$this->form_validation->set_rules('username', 'Username', 'trim|required');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE){
 			if($this->input->post('id') == '' ) {
@@ -129,12 +127,12 @@ class Mpegawai extends CI_Controller {
 		}
 	}
 
-	function failed_save($id){
+	function failed_save($nik){
 		$data = $this->input->post();
 		$data['error'] 	 = validation_errors();
 		$data['content'] = 'Mpegawai/manage';
 
-		if($id==''){
+		if($nik==''){
 			$data['title'] = 'Tambah Pegawai';
 			$data['breadcrum'] = array(
 															array("Absensi PT Dinus Cipta Mandiri",'#'),

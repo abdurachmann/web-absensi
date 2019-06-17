@@ -10,7 +10,7 @@ class Dashboard_model extends CI_Model
 
     public function getCountPegawai()
     {
-        $this->db->select('COUNT(id) AS jumlahpegawai');
+        $this->db->select('COUNT(nik) AS jumlahpegawai');
         $query = $this->db->get('mpegawai');
         return $query->row();
     }

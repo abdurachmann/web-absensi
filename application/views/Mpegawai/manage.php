@@ -31,19 +31,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-3 control-label" for="nama">Mac Address</label>
-				<div class="col-md-7">
-					<input type="text" class="form-control" id="macaddress" placeholder="Mac Address" name="macaddress" value="{macaddress}" required="" aria-required="true">
-				</div>
-			</div>
-			<hr>
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="example-hf-email">Username</label>
-				<div class="col-md-7">
-					<input type="text" class="form-control" id="username" placeholder="username" name="username" value="{username}" required="" aria-required="true">
-				</div>
-			</div>
-			<div class="form-group">
 				<label class="col-md-3 control-label" for="example-hf-email">Password</label>
 				<div class="col-md-7">
 					<input type="password" class="form-control" id="password" placeholder="Password" name="password" value="" required="" aria-required="true">
@@ -53,6 +40,12 @@
 				<label class="col-md-3 control-label" for="example-hf-email">Password Confirmation</label>
 				<div class="col-md-7">
 					<input type="password" class="form-control" id="password_confirmation" placeholder="Password Confirmation" name="password_confirmation" value="" required="" aria-required="true">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label" for="nama">Mac Address</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" id="macaddress" placeholder="Mac Address" name="macaddress" value="{macaddress}" required="" aria-required="true">
 				</div>
 			</div>
 			<div class="form-group">
