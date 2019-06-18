@@ -11,7 +11,7 @@ class Absen extends REST_Controller
 		// Parameter
 		$tanggal = date("Y-m-d");
 		$jenisAbsen = $this->post('jenisabsen');
-		$jamAbsen = $this->post('jamabsen');
+		$jamAbsen = date("H:i:s");
 
 		$data = array();
 		$data['tanggal'] = $tanggal;
@@ -20,20 +20,20 @@ class Absen extends REST_Controller
 		$data['latitude'] = $this->post('latitude');
 		$data['longitude'] = $this->post('longitude');
 
-		if ($jenisAbsen == 'masuk') {
+		if ($jenisAbsen == 1) {
 			if($jamAbsen > 8){
 				$data['keteranganmasuk'] = 'Terlambat';
 			}else{
 				$data['keteranganmasuk'] = '-';
 			}
-			$data['absenmasuk'] = $this->post('jamabsen');
+			$data['absenmasuk'] = $jamAbsen;
 		} else {
 			if($jamAbsen < 16){
 				$data['keterangankeluar'] = 'Pulang Cepat';
 			}else{
 				$data['keterangankeluar'] = '-';
 			}
-			$data['absenkeluar'] = $this->post('jamabsen');
+			$data['absenkeluar'] = $jamAbsen;
 		}
 
 		// Query Database & Response
