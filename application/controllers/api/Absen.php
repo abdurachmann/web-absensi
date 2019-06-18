@@ -20,7 +20,7 @@ class Absen extends REST_Controller
 		$data['latitude'] = $this->post('latitude');
 		$data['longitude'] = $this->post('longitude');
 
-		if ($jenisAbsen == 1) {
+		if (json_decode($jenisAbsen)) {
 			if($jamAbsen > 8){
 				$data['keteranganmasuk'] = 'Terlambat';
 			}else{
