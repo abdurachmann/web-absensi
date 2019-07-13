@@ -3,3 +3,5 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
 php_value short_open_tag 1
+
+php_value date.timezone Asia/Jakarta

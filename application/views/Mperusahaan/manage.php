@@ -17,7 +17,7 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="nama">Nama Perusahaan</label>
 				<div class="col-md-7">
-					<input type="text" class="form-control" id="nama" placeholder="Nama Perusahaan" name="nama" value="{nama}" required="" aria-required="true">
+					<input type="text" class="form-control" id="nama" placeholder="Nama Perusahaan" name="nama" value="{nama}" required="" aria-required="true" disabled>
 				</div>
 			</div>
 
@@ -27,18 +27,18 @@
 				<label class="col-md-3 control-label" for="nama">Alamat</label>
 				<div class="col-md-9 row">
 					<div class="col-md-7">
-						<input type="text" class="form-control" id="alamat" placeholder="Alamat" name="alamat" value="<?= $valueMaps ?>" required="" aria-required="true">
+						<input type="text" class="form-control" id="alamat" placeholder="Alamat" name="alamat" value="<?= $valueMaps ?>" required="" aria-required="true" disabled>
 					</div>
 					<div class="col-md-2">
-						<input type="button" id="find" class="btn btn-warning btn-block mb-3" value="Cari">
+						<input type="button" id="find" style="display:none" class="btn btn-warning btn-block mb-3" value="Cari">
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div style="display:none" class="form-group">
 				<label class="col-md-3 control-label" for="nama"></label>
 				<div class="col-md-7">
 					<div class="box p-1">
-						<div class="map_canvas"></div>
+						<div class="map_canvas">i</div>
 						Google Maps
 					</div>
 				</div>
@@ -47,19 +47,13 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="nama">Latitude</label>
 				<div class="col-md-7">
-					<input type="text" class="form-control" id="latitude" readonly placeholder="Latitude" name="latitude" value="{latitude}" required="" aria-required="true">
+					<input type="text" class="form-control" id="latitude" readonly placeholder="Latitude" name="latitude" value="{latitude}" required="" aria-required="true" disabled>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="nama">Longitude</label>
 				<div class="col-md-7">
-					<input type="text" class="form-control" id="longitude" readonly placeholder="Longitude" name="longitude" value="{longitude}" required="" aria-required="true">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-9 col-md-offset-3">
-					<button class="btn btn-success" type="submit">Simpan</button>
-					<a href="{base_url}mperusahaan" class="btn btn-default" type="reset"><i class="pg-close"></i> Batal</a>
+					<input type="text" class="form-control" id="longitude" readonly placeholder="Longitude" name="longitude" value="{longitude}" required="" aria-required="true" disabled>
 				</div>
 			</div>
 			<?php echo form_hidden('id', $id); ?>

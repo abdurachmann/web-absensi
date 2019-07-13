@@ -1,6 +1,18 @@
 <!-- Full Table -->
 <div class="block block-bordered">
 	<div class="block-content">
+
+  <form action="{base_url}Linfoabsensi/search" method="POST">
+    <div class="row">
+      <div class="col-8">
+        <input type="date" class="form-control" name="tanggal_filter" value="">
+      </div>
+      <div class="col-4">
+        <button type="submit" class="btn btn-primary">Filter</button>
+      </div>
+    </div>
+  </form>
+
     <table class="table table-bordered table-striped">
       <tr>
         <td colspan="9" style="text-align:center;border:none;background-color:#fff;"><b><u>LAPORAN INFORMASI ABSENSI</u></b></td>
@@ -39,9 +51,12 @@
           </tr>
         <? } ?>
       <? } ?>
+
       <tr style="border:none;background-color:#fff;">
         <td colspan="9" style="text-align:right;border-color: #fff;">Absensi PT Dinus Cipta Mandiri - Laporan <?=date("d/m/Y - h:i:s");?></td>
       </tr>
     </table>
+    
+    <p><a href="<?php echo base_url('Linfoabsensi/export') ?>"> Export To Excel</a></p>
   </div>
 </div>
