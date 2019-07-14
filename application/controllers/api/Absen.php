@@ -6,6 +6,12 @@ require 'application/libraries/REST_Controller.php';
 
 class Absen extends REST_Controller
 {
+	public function checkdate_get()
+	{
+		echo date("Y-m-d H:i:s");
+		echo date_default_timezone_get();
+	}
+
 	public function index_post()
 	{
 		// Parameter
@@ -40,7 +46,7 @@ class Absen extends REST_Controller
 		if ($this->db->on_duplicate('infoabsensi', $data)) {
 			$this->response([
 				'status' => true,
-				'message' => 'no message'
+				'message' => 'no message',
 			]);
 		} else {
 			$this->response([

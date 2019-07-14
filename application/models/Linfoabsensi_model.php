@@ -11,6 +11,12 @@ class Linfoabsensi_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function getPegawai()
+	{
+		$query = $this->db->get('mpegawai');
+		return $query->result();
+	}
+
 	public function getLaporanFilter($nik, $tanggal_awal, $tanggal_akhir)
 	{
 		$this->db->select('infoabsensi.*, mpegawai.nama AS namapegawai');
@@ -24,9 +30,10 @@ class Linfoabsensi_model extends CI_Model {
 		return $query->result();
 	}
 
-	public function getPegawai()
-	{
-		$query = $this->db->get('mpegawai');
+	public function getLaporanExcel($export){
+		$this->db->select('infoabsensi.*, mpegawai.nama AS namapegawai');
+		$this->db->join('mpegawai', 'mpegawai.nik = infoabsensi.nik');
+		$query = $this->db->get('infoabsensi');
 		return $query->result();
 	}
 }

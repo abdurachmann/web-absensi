@@ -7,8 +7,8 @@
 			<div class="col-md-7">
 				<select class="form-control" name="nik">
 					<option value="0" <?=($nik == 0 ? 'selected':'') ?>>Semua Pegawai</option>
-					<?php foreach ($pegawai as $key => $row) { ?>
-						<option value="<?php echo $row->nik ?>" <?=($nik == $row->nik ? 'selected':'') ?>><?php echo $row->nama ?></option>
+					<?php foreach ($pegawai as $row) { ?>
+						<option value="<?= $row->nik ?>" <?=($nik == $row->nik ? 'selected':'') ?>><?= $row->nama ?></option>
 					<?php } ?>
 				</select>
 			</div>
@@ -35,7 +35,9 @@
 <!-- Full Table -->
 <div class="block block-bordered">
 	<div class="block-content">
-		<a href="{base_url}linfoabsensi/print_report/<?=$nik?>/<?=$tanggal_awal?>/<?=$tanggal_akhir?>" class="btn btn-primary" style="float:right;margin-bottom:10px"><i class="fa fa-print"></i> Cetak</a>
+		<a href="{base_url}linfoabsensi/print_report/<?=$nik?>/<?=$tanggal_awal?>/<?=$tanggal_akhir?>" target="_blank" class="btn btn-primary" style="margin-bottom:10px"><i class="fa fa-print"></i> Cetak</a>
+		<a href="{base_url}linfoabsensi/export_excel/<?=$nik?>/<?=$tanggal_awal?>/<?=$tanggal_akhir?>" target="_blank" class="btn btn-primary" style="margin-bottom:10px"><i class="fa fa-file-excel-o"></i> Download Excel</a>
+
     <table class="table table-bordered table-striped">
       <tr>
         <td colspan="10" style="text-align:center;border:none;background-color:#fff;"><b><u>LAPORAN INFORMASI ABSENSI</u></b></td>
@@ -74,6 +76,7 @@
           </tr>
         <? } ?>
       <? } ?>
+
       <tr style="border:none;background-color:#fff;">
         <td colspan="9" style="text-align:right;border-color: #fff;">Absensi PT Dinus Cipta Mandiri - Laporan <?=date("d/m/Y - h:i:s");?></td>
       </tr>

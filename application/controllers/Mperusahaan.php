@@ -28,12 +28,11 @@ class Mperusahaan extends CI_Controller {
 				'longitude' 		=> $row->longitude,
 			);
 			$data['error'] 			= '';
-			$data['title'] 			= 'Ubah Perusahaan';
+			$data['title'] 			= 'Lokas Perusahaan';
 			$data['content']	 	= 'Mperusahaan/manage';
 			$data['breadcrum'] 	= array(
 															array("Absensi PT Dinus Cipta Mandiri",'#'),
-															array("Perusahaan",'#'),
-										    			array("Ubah",'Perusahaan')
+															array("Lokasi Perusahaan",'#')
 														);
 
 			$data = array_merge($data, backend_info());
@@ -67,11 +66,10 @@ class Mperusahaan extends CI_Controller {
 		$data['error'] 	 = validation_errors();
 		$data['content'] = 'Mperusahaan/manage';
 
-		$data['title'] = 'Ubah Perusahaan';
+		$data['title'] = 'Lokasi Perusahaan';
 		$data['breadcrum'] = array(
 														array("Absensi PT Dinus Cipta Mandiri",'#'),
-														array("Perusahaan",'#'),
-														array("Ubah",'Perusahaan')
+														array("Lokasi Perusahaan",'#')
 												);
 
 		$data = array_merge($data, backend_info());

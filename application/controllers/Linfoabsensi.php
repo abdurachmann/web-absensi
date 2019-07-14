@@ -76,29 +76,31 @@ class Linfoabsensi extends CI_Controller {
 
 	public function print_report($nik, $tanggal_awal, $tanggal_akhir)
 	{
-    $data = array();
-    $data['nik']   					= $nik;
-    $data['tanggal_awal']   = $tanggal_awal;
-    $data['tanggal_akhir']  = $tanggal_akhir;
-    $data['laporan']        = $this->Linfoabsensi_model->getLaporanFilter($nik, $tanggal_awal, $tanggal_akhir);
-
-		$view = $this->load->view('laporan/linfoabsensi_print', $data);
-
-		ob_start();
-		require("application/views/Laporan/linfoabsensi_print");
-
-		// instantiate and use the dompdf class
 		$dompdf = new Dompdf();
-		$dompdf->loadHtml(ob_get_clean());
+
+		$data = array();
+		$data['laporan'] = $this->Linfoabsensi_model->getLaporanFilter($nik, $tanggal_awal, $tanggal_akhir);
+
+		$html = $this->load->view('Laporan/linfoabsensi_print', $data, TRUE);
+
+		$dompdf->loadHtml($html);
 
 		// (Optional) Setup the paper size and orientation
-		$dompdf->setPaper('A4', 'portrait');
+		$dompdf->setPaper('A4', 'potrait');
 
 		// Render the HTML as PDF
 		$dompdf->render();
 
-		// Output the generated PDF to Browser
-		$dompdf->stream();
+		// // Output the generated PDF to Browser
+		$dompdf->stream('Laporan Absensi.pdf', array('Attachment' => false));
+	}
+
+	public function export_excel($nik, $tanggal_awal, $tanggal_akhir)
+	{
+		$data = array();
+    $data['laporan'] = $this->Linfoabsensi_model->getLaporanFilter($nik, $tanggal_awal, $tanggal_akhir);
+
+		$this->load->view('Laporan/linfoabsensi_excel',$data);
 	}
 }
 
