@@ -46,7 +46,7 @@ class Absen extends REST_Controller
 		if ($this->db->on_duplicate('infoabsensi', $data)) {
 			$this->response([
 				'status' => true,
-				'message' => 'no message',
+				'message' => $jamAbsen,
 			]);
 		} else {
 			$this->response([
