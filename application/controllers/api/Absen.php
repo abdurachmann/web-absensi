@@ -26,8 +26,9 @@ class Absen extends REST_Controller
 		$data['latitude'] = $this->post('latitude');
 		$data['longitude'] = $this->post('longitude');
 
+		$jampulang = date ("16:30:00", "H:i:s");
 		if (json_decode($jenisAbsen)) {
-			if($jamAbsen > 8){
+			if($jamAbsen > $jampulang){
 				$data['keteranganmasuk'] = 'Terlambat';
 			}else{
 				$data['keteranganmasuk'] = '-';

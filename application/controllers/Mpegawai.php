@@ -20,12 +20,12 @@ class Mpegawai extends CI_Controller {
 	function index(){
 		$data = array();
 		$data['error'] 			= '';
-		$data['title'] 			= 'Pegawai';
+		$data['title'] 			= 'Karyawan';
 		$data['content'] 		= 'Mpegawai/index';
 		$data['breadcrum'] 	= array(
 														array("Absensi PT Dinus Cipta Mandiri",'#'),
-														array("Pegawai",'#'),
-									    			array("List",'Pegawai')
+														array("Karyawan",'#'),
+									    			array("List",'Karyawan')
 													);
 
 		$data['list_index'] = $this->Mpegawai_model->getAll();
@@ -46,12 +46,12 @@ class Mpegawai extends CI_Controller {
 		);
 
 		$data['error'] 			= '';
-		$data['title'] 			= 'Tambah Pegawai';
+		$data['title'] 			= 'Tambah Karyawan';
 		$data['content'] 		= 'Mpegawai/manage';
 		$data['breadcrum']	= array(
 														array("Absensi PT Dinus Cipta Mandiri",'#'),
-														array("Pegawai",'#'),
-									    			array("Tambah",'Pegawai')
+														array("Karyawan",'#'),
+									    			array("Tambah",'Karyawan')
 													);
 
 		$data = array_merge($data, backend_info());
@@ -72,12 +72,12 @@ class Mpegawai extends CI_Controller {
 					'status' 				=> $row->status
 				);
 				$data['error'] 			= '';
-				$data['title'] 			= 'Ubah Pegawai';
+				$data['title'] 			= 'Ubah Karyawan';
 				$data['content']	 	= 'Mpegawai/manage';
 				$data['breadcrum'] 	= array(
 																array("Absensi PT Dinus Cipta Mandiri",'#'),
-																array("Pegawai",'#'),
-											    			array("Ubah",'Pegawai')
+																array("Karyawan",'#'),
+											    			array("Ubah",'Karyawan')
 															);
 
 				$data = array_merge($data, backend_info());
@@ -133,18 +133,18 @@ class Mpegawai extends CI_Controller {
 		$data['content'] = 'Mpegawai/manage';
 
 		if($nik==''){
-			$data['title'] = 'Tambah Pegawai';
+			$data['title'] = 'Tambah Karyawan';
 			$data['breadcrum'] = array(
 															array("Absensi PT Dinus Cipta Mandiri",'#'),
-															array("Pegawai",'#'),
-															array("Tambah",'Pegawai')
+															array("Karyawan",'#'),
+															array("Tambah",'Karyawan')
 													);
 		}else{
-			$data['title'] = 'Ubah Pegawai';
+			$data['title'] = 'Ubah Karyawan';
 			$data['breadcrum'] = array(
 															array("Absensi PT Dinus Cipta Mandiri",'#'),
-															array("Pegawai",'#'),
-															array("Ubah",'Pegawai')
+															array("Karyawan",'#'),
+															array("Ubah",'Karyawan')
 													);
 		}
 

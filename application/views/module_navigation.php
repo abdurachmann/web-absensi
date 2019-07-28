@@ -1,13 +1,13 @@
 <?php $uri = $this->uri->segment(1); ?>
 
 <li>
-    <a <?=($uri == 'dashboard') ? "class=\"active\"" : ""; ?> href="{base_url}dashboard"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Dashboard</a>
+    <a <?=($uri == 'dashboard') ? "class=\"active\"" : ""; ?> href="{base_url}dashboard"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Menu Utama</a>
 </li>
 <li <?=($uri == 'mpegawai' || $uri == 'mperusahaan') ? "class=\"open\"" : ""; ?>>
     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-layers"></i><span class="sidebar-mini-hide">Master Data</span></a>
     <ul>
         <li>
-            <a <?=($uri == 'mpegawai') ? "class=\"active\"" : ""; ?> href="{base_url}mpegawai">Pegawai</a>
+            <a <?=($uri == 'mpegawai') ? "class=\"active\"" : ""; ?> href="{base_url}mpegawai">Karyawan</a>
         </li>
         <li>
             <a <?=($uri == 'mperusahaan') ? "class=\"active\"" : ""; ?> href="{base_url}mperusahaan">Perusahaan</a>
@@ -23,5 +23,5 @@
     </ul>
 </li>
 <li>
-    <a <?=($uri == 'musers') ? "class=\"active\"" : ""; ?> href="{base_url}musers"><i class="si si-users"></i><span class="sidebar-mini-hide">Users</a>
+    <a <?=($uri == 'musers') ? "class=\"active\"" : ""; ?> href="{base_url}musers"><i class="si si-users"></i><span class="sidebar-mini-hide">Admin</a>
 </li>
