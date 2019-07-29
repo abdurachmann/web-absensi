@@ -67,7 +67,7 @@ function permissionUserLoggedIn($session)
     if (!$session->userdata('logged_in')) {
         $session->set_flashdata('error', true);
         $session->set_flashdata('message_flash', 'Access Denied');
-        redirect('musers/sign_in');
+        redirect('mpegawai/sign_in');
     }
 }
 

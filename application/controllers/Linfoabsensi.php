@@ -42,6 +42,26 @@ class Linfoabsensi extends CI_Controller {
 		$this->parser->parse('module_template',$data);
 	}
 
+	public function detail($nik, $tanggal_awal, $tanggal_akhir)
+	{
+    $data = array();
+    $data['nik']   					= $nik;
+    $data['tanggal_awal']   = $tanggal_awal;
+    $data['tanggal_akhir']  = $tanggal_akhir;
+    $data['title']          = 'Laporan Info Absensi';
+		$data['content'] 		    = 'Laporan/linfoabsensi_detail';
+    $data['laporan']        = $this->Linfoabsensi_model->getLaporanDetail($nik, $tanggal_awal, $tanggal_akhir);
+    $data['pegawai']        = $this->Linfoabsensi_model->getPegawai();
+		$data['breadcrum'] 		  = array(
+  															array("Absensi PT Dinus Cipta Mandiri",'#'),
+  															array("Laporan",'#'),
+  													    array("Laporan Info Absensi",''),
+  														);
+
+		$data = array_merge($data,backend_info());
+		$this->parser->parse('module_template',$data);
+	}
+
 	public function gofilter() {
 		$nik = $this->input->post('nik');
 		$tanggal_awal = $this->input->post('tanggal_awal');

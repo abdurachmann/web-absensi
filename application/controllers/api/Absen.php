@@ -26,9 +26,9 @@ class Absen extends REST_Controller
 		$data['latitude'] = $this->post('latitude');
 		$data['longitude'] = $this->post('longitude');
 
-		$jampulang = date ("16:30:00", "H:i:s");
+		// $jampulang = date ("16:30:00", "H:i:s");
 		if (json_decode($jenisAbsen)) {
-			if($jamAbsen > $jampulang){
+			if($jamAbsen > 8){
 				$data['keteranganmasuk'] = 'Terlambat';
 			}else{
 				$data['keteranganmasuk'] = '-';
@@ -44,16 +44,23 @@ class Absen extends REST_Controller
 		}
 
 		// Query Database & Response
-		if ($this->db->on_duplicate('infoabsensi', $data)) {
-			$this->response([
-				'status' => true,
-				'message' => $jamAbsen,
-			]);
-		} else {
+		if($this->check_status_absen($this->get('nik'), $tanggal, $jenisAbsen) > 0) {
 			$this->response([
 				'status' => false,
-				'message' => 'error'
+				'message' => 'duplicate'
 			]);
+		} else {
+			if ($this->db->on_duplicate('infoabsensi', $data)) {
+				$this->response([
+					'status' => true,
+					'message' => $jamAbsen,
+				]);
+			} else {
+				$this->response([
+					'status' => false,
+					'message' => 'error'
+				]);
+			}
 		}
 	}
 
@@ -78,6 +85,18 @@ class Absen extends REST_Controller
 					'message' => 'error',
 				]);
 		}
+	}
 
+	function check_status_absen($nik, $tanggal, $jenisAbsen)
+	{
+		$this->db->where('nik', $nik);
+		$this->db->where('tanggal', $tanggal);
+		if (json_decode($jenisAbsen)) {
+			$this->db->where('absenmasuk !=', NULL);
+		} else {
+			$this->db->where('absenkeluar !=', NULL);
+		}
+		$query = $this->db->get('infoabsensi');
+		return $query->num_rows();
 	}
 }

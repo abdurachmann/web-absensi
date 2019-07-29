@@ -9,14 +9,14 @@
             <ul class="dropdown-menu dropdown-menu-right">
                 <li class="dropdown-header">{user_name}</li>
                 <li>
-                    <a tabindex="-1" href="{base_url}musers/profile">
+                    <a tabindex="-1" href="{base_url}mpegawai/profile">
                         <i class="si si-user pull-right"></i>Profile
                     </a>
                 </li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Actions</li>
                 <li>
-                    <a tabindex="-1" href="{base_url}musers/sign_out">
+                    <a tabindex="-1" href="{base_url}mpegawai/sign_out">
                         <i class="si si-logout pull-right"></i>Log out
                     </a>
                 </li>

@@ -11,13 +11,14 @@ class Mpegawai extends CI_Controller {
 	public function __construct()
   {
 		parent::__construct();
-		permissionUserLoggedIn($this->session);
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<label>', '</label>');
 		$this->load->model('Mpegawai_model');
   }
 
 	function index(){
+		permissionUserLoggedIn($this->session);
+
 		$data = array();
 		$data['error'] 			= '';
 		$data['title'] 			= 'Karyawan';
@@ -35,10 +36,13 @@ class Mpegawai extends CI_Controller {
 	}
 
 	function create(){
+		permissionUserLoggedIn($this->session);
+
 		$data = array(
 			'id' 					=> '',
 			'nik' 				=> '',
 			'nama' 				=> '',
+			'jabatan' 		=> '',
 			'alamat' 			=> '',
 			'password' 		=> '',
 			'macaddress' 	=> '',
@@ -59,6 +63,8 @@ class Mpegawai extends CI_Controller {
 	}
 
 	function update($nik){
+		permissionUserLoggedIn($this->session);
+
 		if($nik != ''){
 			$row = $this->Mpegawai_model->getSpecified($nik);
 			if(isset($row->nik)){
@@ -66,6 +72,7 @@ class Mpegawai extends CI_Controller {
 					'id' 						=> $row->nik,
 					'nik' 					=> $row->nik,
 					'nama' 					=> $row->nama,
+					'jabatan' 			=> $row->jabatan,
 					'alamat' 				=> $row->alamat,
 					'password' 			=> $row->password,
 					'macaddress' 		=> $row->macaddress,
@@ -95,6 +102,8 @@ class Mpegawai extends CI_Controller {
 	}
 
 	function delete($nik){
+		permissionUserLoggedIn($this->session);
+
 		$this->Mpegawai_model->softDelete($nik);
 		$this->session->set_flashdata('confirm',true);
 		$this->session->set_flashdata('message_flash','data telah terhapus.');
@@ -102,8 +111,11 @@ class Mpegawai extends CI_Controller {
 	}
 
 	function save(){
+		permissionUserLoggedIn($this->session);
+
 		$this->form_validation->set_rules('nik', 'nik', 'trim|required');
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
 		$this->form_validation->set_rules('password_confirmation', 'Password Confirmation', 'trim|required|matches[password]');
 		$this->form_validation->set_rules('macaddress', 'Mac Address', 'trim|required');
@@ -128,6 +140,8 @@ class Mpegawai extends CI_Controller {
 	}
 
 	function failed_save($nik){
+		permissionUserLoggedIn($this->session);
+
 		$data = $this->input->post();
 		$data['error'] 	 = validation_errors();
 		$data['content'] = 'Mpegawai/manage';
@@ -150,5 +164,96 @@ class Mpegawai extends CI_Controller {
 
 		$data = array_merge($data, backend_info());
 		$this->parser->parse('module_template',$data);
+	}
+
+	function profile(){
+		permissionUserLoggedIn($this->session);
+
+		if($this->session->userdata('user_nik') != ''){
+			$row = $this->Mpegawai_model->getSpecified($this->session->userdata('user_nik'));
+			if(isset($row->nik)){
+				$data = array(
+					'id' 						=> $row->nik,
+					'nik' 					=> $row->nik,
+					'nama' 					=> $row->nama,
+					'jabatan' 			=> $row->jabatan,
+					'alamat' 				=> $row->alamat,
+					'password' 			=> $row->password,
+					'macaddress' 		=> $row->macaddress,
+					'status' 				=> $row->status
+				);
+				$data['error'] = '';
+				$data['title'] = 'Ubah Profile';
+				$data['content'] = 'mpegawai/profile';
+				$data['breadcrum'] = array(
+															array("Absensi PT Dinus Cipta Mandiri",'dashboard'),
+															array("Karyawan",'mpegawai'),
+															array("Profile",'#')
+														);
+
+				$data = array_merge($data,backend_info());
+				$this->parser->parse('module_template',$data);
+			}else{
+				$this->session->set_flashdata('error',true);
+				$this->session->set_flashdata('message_flash','data tidak ditemukan.');
+				redirect('dashboard','location');
+			}
+		}else{
+			$this->session->set_flashdata('error',true);
+			$this->session->set_flashdata('message_flash','data tidak ditemukan.');
+			redirect('dashboard');
+		}
+	}
+
+	function profile_update(){
+		permissionUserLoggedIn($this->session);
+
+		$this->form_validation->set_rules('nik', 'nik', 'trim|required');
+		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+		$this->form_validation->set_rules('password_confirmation', 'Password Confirmation', 'trim|required|matches[password]');
+		$this->form_validation->set_rules('macaddress', 'Mac Address', 'trim|required');
+
+		if ($this->form_validation->run() == TRUE){
+			if($this->mpegawai_model->update()){
+				$this->session->set_flashdata('confirm',true);
+				$this->session->set_flashdata('message_flash','data telah tersimpan.');
+				redirect('mpegawai/profile','location');
+			}
+		}else{
+			$this->session->set_flashdata('error',true);
+			$this->session->set_flashdata('message_flash','data tidak berhasil disimpan.');
+			redirect('mpegawai/profile','location');
+		}
+	}
+
+	function sign_in(){
+		permissionUserLoggin($this->session);
+
+		$data = array('username' => '', 'remember' => FALSE, 'error' => '');
+		$data = array_merge($data,backend_info());
+		$this->load->view('mpegawai/login_area',$data);
+	}
+
+	function dosign_in(){
+		permissionUserLoggin($this->session);
+
+		$nik =  $this->input->post('nik');
+	 	$password =  $this->input->post('password');
+
+		 //call the model for auth
+		if($this->Mpegawai_model->signIn($nik, $password)){
+			redirect('dashboard','location');
+		}else{
+			redirect('mpegawai/sign_in','location');
+		}
+	}
+
+	function sign_out(){
+		permissionUserLoggedIn($this->session);
+
+		$this->Mpegawai_model->signOut();
+		redirect('mpegawai','location');
 	}
 }

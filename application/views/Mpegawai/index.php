@@ -18,6 +18,7 @@
 					<th>No</th>
 					<th>NIK</th>
 					<th>Nama</th>
+					<th>Jabatan</th>
 					<th>Alamat</th>
 					<th>Mac Address</th>
 					<th>Action</th>
@@ -31,6 +32,7 @@
 					<td><?=$number?></td>
 					<td><?=$row->nik?></td>
 					<td><?=$row->nama?></td>
+					<td><?=$row->jabatan?></td>
 					<td><?=$row->alamat?></td>
 					<td><?=$row->macaddress?></td>
 					<td>

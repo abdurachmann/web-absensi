@@ -14,10 +14,10 @@ function backend_info() {
 		'plugins_path' => base_url().'assets/js/plugins/',
 		'upload_path' => base_url().'assets/upload/',
 
-		'user_id' => $CI->session->userdata('user_id'),
-		'user_avatar' => $CI->session->userdata('user_avatar'),
+		'user_nik' => $CI->session->userdata('user_nik'),
+		'user_avatar' => '',
 		'user_name' => $CI->session->userdata('user_name'),
-		'user_permission' => $CI->session->userdata('user_permission'),
+		'user_jabatan' => $CI->session->userdata('user_jabatan'),
 	);
 	return $data;
 }

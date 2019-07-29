@@ -1,5 +1,6 @@
 <?php $uri = $this->uri->segment(1); ?>
 
+<?php if($user_jabatan == 'HRD') { ?>
 <li>
     <a <?=($uri == 'dashboard') ? "class=\"active\"" : ""; ?> href="{base_url}dashboard"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Menu Utama</a>
 </li>
@@ -14,6 +15,7 @@
         </li>
     </ul>
 </li>
+<? } ?>
 <li <?=($uri == 'linfoabsensi') ? "class=\"open\"" : ""; ?>>
     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-list"></i><span class="sidebar-mini-hide">Laporan</span></a>
     <ul>
@@ -21,7 +23,4 @@
             <a <?=($uri == 'linfoabsensi') ? "class=\"active\"" : ""; ?> href="{base_url}linfoabsensi">Informasi Absensi</a>
         </li>
     </ul>
-</li>
-<li>
-    <a <?=($uri == 'musers') ? "class=\"active\"" : ""; ?> href="{base_url}musers"><i class="si si-users"></i><span class="sidebar-mini-hide">Admin</a>
 </li>

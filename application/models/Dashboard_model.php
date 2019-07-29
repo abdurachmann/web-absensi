@@ -11,6 +11,7 @@ class Dashboard_model extends CI_Model
     public function getCountPegawai()
     {
         $this->db->select('COUNT(nik) AS jumlahpegawai');
+        $this->db->where('jabatan !=', 'Adm');
         $this->db->where('status', 1);
         $query = $this->db->get('mpegawai');
         return $query->row();
@@ -18,9 +19,10 @@ class Dashboard_model extends CI_Model
 
     public function getCountUser()
     {
-      $this->db->select('COUNT(id) AS jumlahuser');
+      $this->db->select('COUNT(nik) AS jumlahuser');
+      $this->db->where('jabatan', 'Adm');
       $this->db->where('status', 1);
-      $query = $this->db->get('muser');
+      $query = $this->db->get('mpegawai');
       return $query->row();
     }
 }
