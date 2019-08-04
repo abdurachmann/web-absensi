@@ -10,7 +10,7 @@ class Profile extends REST_Controller
 	{
 		// Parameter
 		$nik = $this->get('nik');
-		
+
 		// Query Database
 		$this->db->where('nik', $nik);
 		$query = $this->db->get('mpegawai');
@@ -31,5 +31,4 @@ class Profile extends REST_Controller
 			]);
 		}
 	}
-	
 }
