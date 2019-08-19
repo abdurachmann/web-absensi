@@ -15,7 +15,7 @@ class ChangePassword extends REST_Controller
 
 		// Query Database
 		$this->db->where('nik', $nik);
-		$this->db->where('password', md5($password));
+		$this->db->where('password', md5($passwordLama));
 		$query = $this->db->get('mpegawai');
 		$data = $query->row();
 
