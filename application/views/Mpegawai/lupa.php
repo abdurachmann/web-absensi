@@ -4,10 +4,10 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Absensi PT Dinus Cipta Mandiri | Login</title>
+        <title>Absensi PT Dinus Cipta Mandiri | Lupa Password</title>
 
-        <meta name="description" content="Apotek">
-        <meta name="author" content="gunalirezqimauludi">
+        <meta name="description" content="Absensi">
+        <meta name="author" content="abdurachman">
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
 
@@ -44,7 +44,7 @@
         <link rel="stylesheet" id="css-theme" href="assets/css/themes/city.min.css">
         <!-- END Stylesheets -->
     </head>
-    <body style="background-color:#f7f7f7">
+    <body style="background-color:#fefefe">
         <!-- Login Content -->
         <div class="content content-boxed overflow-hidden">
             <div class="row">
@@ -53,44 +53,31 @@
                         <!-- Login Title -->
                         <div class="text-center">
                             <!-- <i class="fa fa-2x fa-circle-o-notch text-warning"></i> -->
-                            <img src="<?=base_url()?>assets/upload/logo/logo.jpeg" width="250px">
+                            <img src="<?=base_url()?>assets/upload/logo/logo.png">
                             <!-- <p class="text-muted push-15-t">Apotek</p> -->
                         </div>
                         <!-- END Login Title -->
 
-                        <?php echo errorSuccess($this->session)?>
-                        <?php if($error != '') echo errorMessage($error)?>
-
                         <!-- Login Form -->
                         <!-- jQuery Validation (.js-validation-login class is initialized in js/pages/base_pages_login.js) -->
                         <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                        <form class="js-validation-login form-horizontal push-30-t" action="<?=base_url()?>mpegawai/dosign_in" method="post">
+                        <form class="js-validation-login form-horizontal push-30-t" action="<?=base_url()?>mpegawai/reset" method="post">
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <div class="form-material form-material-warning floating">
-                                        <input class="form-control" required type="text" id="login-nik" name="nik">
-                                        <label for="login-username">NIK</label>
+                                        <input class="form-control" type="text" id="login-nik" name="nik">
+                                        <label for="login-nik">NIK</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group push-30-t">
                                 <div class="col-xs-12">
-                                    <div class="form-material form-material-warning floating">
-                                        <input class="form-control" required type="password" id="login-password" name="password">
-                                        <label for="login-password">Password</label>
-                                    </div>
+                                    *masukkan NIK anda untuk mereset password
                                 </div>
                             </div>
-
                             <div class="form-group push-30-t">
                                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                                    <a href="<?=base_url()?>mpegawai/lupa">Lupa Password ?</a>
-                                </div>
-                            </div>
-
-                            <div class="form-group push-30-t">
-                                <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                                    <button class="btn btn-sm btn-block btn-warning" type="submit">Log in</button>
+                                    <button class="btn btn-sm btn-block btn-warning" type="submit">Submit</button>
                                 </div>
                             </div>
                         </form>

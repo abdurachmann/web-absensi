@@ -28,7 +28,7 @@ class Mperusahaan extends CI_Controller {
 				'longitude' 		=> $row->longitude,
 			);
 			$data['error'] 			= '';
-			$data['title'] 			= 'Lokas Perusahaan';
+			$data['title'] 			= 'Lokasi Perusahaan';
 			$data['content']	 	= 'Mperusahaan/manage';
 			$data['breadcrum'] 	= array(
 															array("Absensi PT Dinus Cipta Mandiri",'#'),

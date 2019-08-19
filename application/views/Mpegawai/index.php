@@ -1,5 +1,5 @@
 <?php echo errorSuccess($this->session)?>
-<?php if($error != '') echo errorM_mssage($error)?>
+<?php if($error != '') echo errorMessage($error)?>
 
 <div class="block">
 	<div class="block-header">

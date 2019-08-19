@@ -145,6 +145,7 @@ class Mpegawai extends CI_Controller {
 		$data = $this->input->post();
 		$data['error'] 	 = validation_errors();
 		$data['content'] = 'Mpegawai/manage';
+		$data['jabatan'] = $this->input->post('jabatan');
 
 		if($nik==''){
 			$data['title'] = 'Tambah Karyawan';
@@ -246,6 +247,8 @@ class Mpegawai extends CI_Controller {
 		if($this->Mpegawai_model->signIn($nik, $password)){
 			redirect('dashboard','location');
 		}else{
+            $this->session->set_flashdata('error',true);
+			$this->session->set_flashdata('message_flash','data tidak berhasil disimpan.');
 			redirect('mpegawai/sign_in','location');
 		}
 	}
@@ -254,6 +257,26 @@ class Mpegawai extends CI_Controller {
 		permissionUserLoggedIn($this->session);
 
 		$this->Mpegawai_model->signOut();
-		redirect('mpegawai','location');
+		redirect('mpegawai/sign_in','location');
+	}
+
+	function lupa(){
+		$this->load->view('muser_account/lupa');
+	}
+
+	function reset(){
+		$this->form_validation->set_rules('username', 'username', 'trim|required');
+
+		if ($this->form_validation->run() == TRUE){
+			if($this->muser_account_model->reset()){
+				$this->session->set_flashdata('confirm',true);
+				$this->session->set_flashdata('message_flash','Password berhasil di reset ke default, segera lakukan ubah password.');
+				redirect('muser_account/sign_in','location');
+			}
+		}else{
+			$this->session->set_flashdata('error',true);
+			$this->session->set_flashdata('message_flash','username tidak terdaftar.');
+			redirect('muser_account/lupa','location');
+		}
 	}
 }

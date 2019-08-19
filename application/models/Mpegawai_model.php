@@ -110,8 +110,7 @@ class Mpegawai_model extends CI_Model
       $query = $this->db->query('SELECT *
         FROM mpegawai
         WHERE nik = "'.$nik.'" AND
-        password = "'.md5($password).'" AND
-        (jabatan = "HRD" OR jabatan = "Adm")');
+        password = "'.md5($password).'" AND jabatan = "Adm"');
 
   		if($query->num_rows() > 0){
   			$row = $query->row();
@@ -140,5 +139,19 @@ class Mpegawai_model extends CI_Model
 
   		$this->session->unset_userdata($data);
       $this->session->sess_destroy();
-  	}
+    }
+    
+    function reset(){
+      $this->nik 	= $_POST['nik'];
+      $this->password 	= md5('123456');
+      $this->status 		= 1;
+  
+      if($this->upload(true)){
+        $this->db->update('mpegawai', $this, array('nik' => $_POST['nik']));
+        return true;
+      }else{
+        $this->error_message = "Penyimpanan Gagal";
+        return false;
+      }
+    }
 }
