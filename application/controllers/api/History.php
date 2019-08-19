@@ -14,7 +14,7 @@ class History extends REST_Controller
 		$tanggalsampai = $this->get('tanggalsampai');
 
 		// Query Database
-		$this->db->where('nik', $nik);
+		$this->db->where('nik', 'P0001');
 		$this->db->where('tanggal >=', $tanggaldari);
 		$this->db->where('tanggal <=', $tanggalsampai);
 		$query = $this->db->get('infoabsensi');
