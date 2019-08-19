@@ -10,11 +10,13 @@ class History extends REST_Controller
 	{
 		// Parameter
 		$nik = $this->get('nik');
-		$tahun = $this->get('tahun');
+		$tanggaldari = $this->get('tanggaldari');
+		$tanggalsampai = $this->get('tanggalsampai');
 
 		// Query Database
 		$this->db->where('nik', $nik);
-		$this->db->where('tanggal LIKE ', $tahun.'%');
+		$this->db->where('tanggal >=', $tanggaldari);
+		$this->db->where('tanggal <=', $tanggalsampai);
 		$query = $this->db->get('infoabsensi');
 		$data = $query->result();
 
