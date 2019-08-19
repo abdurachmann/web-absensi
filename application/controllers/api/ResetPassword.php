@@ -10,11 +10,9 @@ class ResetPassword extends REST_Controller
 	{
 		// Parameter
 		$nik = $this->post('nik');
-		$password = $this->post('password');
 
 		// Query Database
 		$this->db->where('nik', $nik);
-		$this->db->where('password', md5($password));
 		$query = $this->db->get('mpegawai');
 		$data = $query->row();
 
@@ -23,7 +21,7 @@ class ResetPassword extends REST_Controller
 			$newPassword = md5(str_replace("-", "", $data->tanggallahir));
 			$this->db->set('password', $newPassword);
 			$this->db->where('nik', $nik);
-			if ($this->db->update('infoabsensi')) {
+			if ($this->db->update('mpegawai')) {
 				$this->response([
 					'status' => true,
 					'message' => 'no message',

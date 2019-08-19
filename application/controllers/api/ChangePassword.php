@@ -23,7 +23,7 @@ class ChangePassword extends REST_Controller
 		if ($query->num_rows() > 0) {
 			$this->db->set('password', $passwordBaru);
 			$this->db->where('nik', $nik);
-			if ($this->db->update('infoabsensi')) {
+			if ($this->db->update('mpegawai')) {
 				$this->response([
 					'status' => true,
 					'message' => 'no message',
