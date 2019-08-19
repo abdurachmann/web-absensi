@@ -18,7 +18,7 @@ class ResetPassword extends REST_Controller
 
 		// Response
 		if ($query->num_rows() > 0) {
-			$newPassword = md5(str_replace("-", "", $data->tanggallahir));
+			$newPassword = md5(str_replace("-", "", date('d-m-Y', strtotime($data->tanggallahir))));
 			$this->db->set('password', $newPassword);
 			$this->db->where('nik', $nik);
 			if ($this->db->update('mpegawai')) {
