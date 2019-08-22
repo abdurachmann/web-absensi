@@ -14,13 +14,29 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-3 control-label" for="example-hf-email">Tanggal</label>
+			<label class="col-md-3 control-label" for="example-hf-email">Periode</label>
 			<div class="col-md-3">
-				<input type="date" class="form-control" placeholder="Tanggal Awal" name="tanggal_awal" value="{tanggal_awal}">
+				<select class="form-control" name="bulan">
+					<option value="01" <?=($bulan == '01' ? 'selected':'') ?>>Januari</option>
+					<option value="02" <?=($bulan == '02' ? 'selected':'') ?>>Februari</option>
+					<option value="03" <?=($bulan == '03' ? 'selected':'') ?>>Maret</option>
+					<option value="04" <?=($bulan == '04' ? 'selected':'') ?>>April</option>
+					<option value="05" <?=($bulan == '05' ? 'selected':'') ?>>Mei</option>
+					<option value="06" <?=($bulan == '06' ? 'selected':'') ?>>Juni</option>
+					<option value="07" <?=($bulan == '07' ? 'selected':'') ?>>Juli</option>
+					<option value="08" <?=($bulan == '08' ? 'selected':'') ?>>Agustus</option>
+					<option value="09" <?=($bulan == '09' ? 'selected':'') ?>>September</option>
+					<option value="10" <?=($bulan == '10' ? 'selected':'') ?>>Oktober</option>
+					<option value="11" <?=($bulan == '11' ? 'selected':'') ?>>November</option>
+					<option value="12" <?=($bulan == '12' ? 'selected':'') ?>>Desember</option>
+				</select>
 			</div>
-			<div class="col-md-1"><center>-</center></div>
 			<div class="col-md-3">
-				<input type="date" class="form-control" placeholder="Tanggal Akhir" name="tanggal_akhir" value="{tanggal_akhir}">
+				<select class="form-control" name="tahun">
+					<? for ($i=2019; $i <= date("Y"); $i++) { ?>
+						<option value="<?= $i ?>" <?=($tahun == $i ? 'selected':'') ?>><?= $i ?></option>
+					<? } ?>
+				</select>
 			</div>
 		</div>
 		<div class="form-group">
@@ -41,7 +57,6 @@
       </tr>
       <tr>
         <th style="text-align:center">No.</th>
-        <th style="text-align:center">Tanggal</th>
         <th style="text-align:center">Pegawai</th>
         <th style="text-align:center">Jumlah Kehadiran</th>
 				<th style="text-align:center">Jumlah Keterlambatan</th>
@@ -58,13 +73,12 @@
           <!-- menampilkan data laporan -->
           <tr>
             <td style="text-align:center"><?=$number;?></td>
-            <td><?=$row->tanggal;?></td>
             <td><?=$row->namapegawai;?></td>
 						<td><?=$row->jumlahkehadiran;?></td>
 						<td><?=$row->jumlahketerlambatan;?></td>
 						<td><?=$row->jumlahpulangcepat;?></td>
             <td>
-							<a class="btn btn-primary" href="{base_url}linfoabsensi/detail/<?=$row->nik?>/<?=$tanggal_awal?>/<?=$tanggal_akhir?>"><i class="fa fa-eye"></i></a>
+							<a class="btn btn-primary" href="{base_url}linfoabsensi/detail/<?=$row->nik?>/<?=$bulan?>/<?=$tahun?>"><i class="fa fa-eye"></i></a>
 						</td>
           </tr>
         <? } ?>

@@ -26,8 +26,8 @@ class Linfoabsensi extends CI_Controller {
 	{
     $data = array();
     $data['nik']   					= '';
-    $data['tanggal_awal']   = date("Y-m-d");
-    $data['tanggal_akhir']  = date("Y-m-d");
+    $data['bulan']   				= date("m");
+    $data['tahun']  				= date("Y");
     $data['title']          = 'Laporan Info Absensi';
 		$data['content'] 		    = 'Laporan/linfoabsensi';
     $data['laporan']        = $this->Linfoabsensi_model->getLaporan();
@@ -42,15 +42,15 @@ class Linfoabsensi extends CI_Controller {
 		$this->parser->parse('module_template',$data);
 	}
 
-	public function detail($nik, $tanggal_awal, $tanggal_akhir)
+	public function detail($nik, $bulan, $tahun)
 	{
     $data = array();
     $data['nik']   					= $nik;
-    $data['tanggal_awal']   = $tanggal_awal;
-    $data['tanggal_akhir']  = $tanggal_akhir;
+    $data['bulan']   				= $bulan;
+    $data['tahun']  				= $tahun;
     $data['title']          = 'Laporan Info Absensi';
 		$data['content'] 		    = 'Laporan/linfoabsensi_detail';
-    $data['laporan']        = $this->Linfoabsensi_model->getLaporanDetail($nik, $tanggal_awal, $tanggal_akhir);
+    $data['laporan']        = $this->Linfoabsensi_model->getLaporanDetail($nik, $bulan, $tahun);
     $data['pegawai']        = $this->Linfoabsensi_model->getPegawai();
 		$data['breadcrum'] 		  = array(
   															array("Absensi PT Dinus Cipta Mandiri",'#'),
@@ -64,25 +64,25 @@ class Linfoabsensi extends CI_Controller {
 
 	public function gofilter() {
 		$nik = $this->input->post('nik');
-		$tanggal_awal = $this->input->post('tanggal_awal');
-		$tanggal_akhir = $this->input->post('tanggal_akhir');
+		$bulan = $this->input->post('bulan');
+		$tahun = $this->input->post('tahun');
 
-		if($nik != '' && $tanggal_awal != '' && $tanggal_akhir != '') {
-			redirect('linfoabsensi/filter/'.$nik.'/'.$tanggal_awal.'/'.$tanggal_akhir);
+		if($nik != '' && $bulan != '' && $tahun != '') {
+			redirect('linfoabsensi/filter/'.$nik.'/'.$bulan.'/'.$tahun);
 		}else{
 			redirect('linfoabsensi/index');
 		}
 	}
 
-	public function filter($nik, $tanggal_awal, $tanggal_akhir)
+	public function filter($nik, $bulan, $tahun)
 	{
     $data = array();
     $data['nik']   					= $nik;
-    $data['tanggal_awal']   = $tanggal_awal;
-    $data['tanggal_akhir']  = $tanggal_akhir;
+    $data['bulan']   				= $bulan;
+    $data['tahun']  				= $tahun;
     $data['title']          = 'Laporan Info Absensi';
 		$data['content'] 		    = 'Laporan/linfoabsensi';
-    $data['laporan']        = $this->Linfoabsensi_model->getLaporanFilter($nik, $tanggal_awal, $tanggal_akhir);
+    $data['laporan']        = $this->Linfoabsensi_model->getLaporanFilter($nik, $bulan, $tahun);
     $data['pegawai']        = $this->Linfoabsensi_model->getPegawai();
 		$data['breadcrum'] 		  = array(
   															array("Absensi PT Dinus Cipta Mandiri",'#'),
@@ -94,12 +94,12 @@ class Linfoabsensi extends CI_Controller {
 		$this->parser->parse('module_template',$data);
 	}
 
-	public function print_report($nik, $tanggal_awal, $tanggal_akhir)
+	public function print_report($nik, $bulan, $tahun)
 	{
 		$dompdf = new Dompdf();
 
 		$data = array();
-		$data['laporan'] = $this->Linfoabsensi_model->getLaporanFilter($nik, $tanggal_awal, $tanggal_akhir);
+		$data['laporan'] = $this->Linfoabsensi_model->getLaporanFilter($nik, $bulan, $tahun);
 
 		$html = $this->load->view('Laporan/linfoabsensi_print', $data, TRUE);
 
@@ -115,10 +115,10 @@ class Linfoabsensi extends CI_Controller {
 		$dompdf->stream('Laporan Absensi.pdf', array('Attachment' => false));
 	}
 
-	public function export_excel($nik, $tanggal_awal, $tanggal_akhir)
+	public function export_excel($nik, $bulan, $tahun)
 	{
 		$data = array();
-    $data['laporan'] = $this->Linfoabsensi_model->getLaporanFilter($nik, $tanggal_awal, $tanggal_akhir);
+    $data['laporan'] = $this->Linfoabsensi_model->getLaporanFilter($nik, $bulan, $tahun);
 
 		$this->load->view('Laporan/linfoabsensi_excel',$data);
 	}

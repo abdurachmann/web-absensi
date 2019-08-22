@@ -1,8 +1,8 @@
 <!-- Full Table -->
 <div class="block block-bordered">
 	<div class="block-content">
-		<a href="{base_url}linfoabsensi/print_report/<?=$nik?>/<?=$tanggal_awal?>/<?=$tanggal_akhir?>" target="_blank" class="btn btn-primary" style="margin-bottom:10px"><i class="fa fa-print"></i> Cetak</a>
-		<a href="{base_url}linfoabsensi/export_excel/<?=$nik?>/<?=$tanggal_awal?>/<?=$tanggal_akhir?>" target="_blank" class="btn btn-primary" style="margin-bottom:10px"><i class="fa fa-file-excel-o"></i> Download Excel</a>
+		<a href="{base_url}linfoabsensi/print_report/<?=$nik?>/<?=$bulan?>/<?=$tahun?>" target="_blank" class="btn btn-primary" style="margin-bottom:10px"><i class="fa fa-print"></i> Cetak</a>
+		<a href="{base_url}linfoabsensi/export_excel/<?=$nik?>/<?=$bulan?>/<?=$tahun?>" target="_blank" class="btn btn-primary" style="margin-bottom:10px"><i class="fa fa-file-excel-o"></i> Download Excel</a>
 
     <table class="table table-bordered table-striped">
       <tr>
@@ -44,7 +44,7 @@
       <? } ?>
 
       <tr style="border:none;background-color:#fff;">
-        <td colspan="9" style="text-align:right;border-color: #fff;">Absensi PT Dinus Cipta Mandiri - Laporan <?=date("d/m/Y - h:i:s");?></td>
+        <td colspan="10" style="text-align:right;border-color: #fff;">Absensi PT Dinus Cipta Mandiri - Laporan <?=date("d/m/Y - h:i:s");?></td>
       </tr>
     </table>
   </div>
